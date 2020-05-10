@@ -27,7 +27,7 @@ namespace capstone.Controllers
         public IEnumerable<Devices> Get()
         {
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            
+
             Devices[] devices = null;
             _context.Devices.Where( m => m.User.Id == userId).ToArray();
 
@@ -36,6 +36,7 @@ namespace capstone.Controllers
         [HttpPost]
         public Devices Post([FromBody]Devices devices)
         {
+            devices.UserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             _context.Devices.Add(devices);
             _context.SaveChanges();
             return devices;

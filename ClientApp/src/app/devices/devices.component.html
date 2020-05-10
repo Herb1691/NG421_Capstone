@@ -1,0 +1,36 @@
+<h1 id="tableLabel">Devices</h1>
+
+<p *ngIf="!devices"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="devices">
+  <thead>
+    <tr>
+      <th>System Type</th>
+      <th>Make</th>
+      <th>System Name</th>
+      <th>Purchase Date</th>
+      <th>Is Assigned</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of devices">
+      <td>{{ d.systemtype }}</td>
+      <td>{{ d.maker }}</td>
+      <td>{{ d.systemname }}</td>
+      <td>{{ d.datepurchased }}</td>
+      <td type="checkbox">{{ d.isassigned }}</td>
+    </tr>
+  </tbody>
+</table>
+System Type
+<input [(ngModel)]="device.systemtype" name="systemtype" style="width: 200px;"/>
+Maker
+<input [(ngModel)]="device.maker" name="maker" style="width: 200px;"/>
+System Name
+<input [(ngModel)]="device.systemname" name="systemname" style="width: 200px;"/>
+Date Purchased
+<input [(ngModel)]="device.datepurchased" name="datepurchased" style="width: 200px;"/>
+Is Assigned
+<input [(ngModel)]="device.isassigned" name="isassigned" type="checkbox" />
+
+<button (click)="save()">Save</button>
